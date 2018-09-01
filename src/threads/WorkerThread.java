@@ -22,10 +22,14 @@ public class WorkerThread extends Thread
 	@Override
 	public void run() 
 	{
-		workerSleep(delayMS);
+		ThreadSleep(delayMS);
 		DoWork();
 	}
 	
+	
+	  /////////////////////////////////////////////////////////////////////////////
+	 // These aren't required for threading or anything, just here for testing. //
+	/////////////////////////////////////////////////////////////////////////////
 	// A uniform DoWork function for benchmarking purposes.
 	public void DoWork()
 	{
@@ -33,7 +37,7 @@ public class WorkerThread extends Thread
 		long num = 0;
 		
 		for(int i = 0; i < Math.pow(10, 9); ++i)
-			num += Math.sqrt(i);
+			num *= Math.sqrt(i);
 		
 		long msEnd = System.currentTimeMillis();
 		
@@ -41,7 +45,7 @@ public class WorkerThread extends Thread
 	}
 	
 	// Handles the try catch requirement java has for sleeping
-	private void workerSleep(int ms)
+	private void ThreadSleep(int ms)
 	{
 		try
 		{
