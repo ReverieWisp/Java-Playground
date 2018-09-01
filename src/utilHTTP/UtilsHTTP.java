@@ -13,8 +13,8 @@ import java.net.URL;
  * https://www.journaldev.com/7148/java-httpurlconnection-example-java-http-request-get-post
  * @author Wisp
  */
-public class UtilsHTTP {
-
+public class UtilsHTTP 
+{
 	// Configuration for requests
 	private static final String USER_AGENT = "Mozilla/5.0";
 	
@@ -38,7 +38,7 @@ public class UtilsHTTP {
 		}
 	}
 	*/
-
+	
 	
 	// Sends a GET request for the specified URL.
 	public static Response SendGETRequest(String url)
