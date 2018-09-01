@@ -8,11 +8,11 @@ public class Main
 	{
 		WorkerThread[] someThreads = 
 		{
-			  new WorkerThread("thread 1", 100)
-			, new WorkerThread("thread 2", 500)
-			, new WorkerThread("thread 3", 200)
-			, new WorkerThread("thread 4", 700)
-			, new WorkerThread("thread 5", 250)
+			  new WorkerThread("1", 100)
+			, new WorkerThread("2", 500)
+			, new WorkerThread("3", 200)
+			, new WorkerThread("4", 700)
+			, new WorkerThread("5", 250)
 		};
 		
 		for(int i = 0; i < someThreads.length; ++i)

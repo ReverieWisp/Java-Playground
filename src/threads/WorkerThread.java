@@ -23,7 +23,21 @@ public class WorkerThread extends Thread
 	public void run() 
 	{
 		workerSleep(delayMS);
-		System.out.println("I'm thread " + name + "!");	
+		DoWork();
+	}
+	
+	// A uniform DoWork function for benchmarking purposes.
+	public void DoWork()
+	{
+		long msStart = System.currentTimeMillis();
+		long num = 0;
+		
+		for(int i = 0; i < Math.pow(10, 9); ++i)
+			num += Math.sqrt(i);
+		
+		long msEnd = System.currentTimeMillis();
+		
+		System.out.println("I'm thread " + name + ", I waited for " + delayMS + "ms then I did " + (msEnd - msStart) + "ms of identical work!");
 	}
 	
 	// Handles the try catch requirement java has for sleeping
