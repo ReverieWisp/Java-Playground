@@ -186,10 +186,11 @@ public class Localizer
 		
 		for(String toStub : localizeList)
 		{
-			if(translated.containsKey(toStub))
-				Warn("'" + toStub + "'" + " already exists!");
-			else
+			if(!translated.containsKey(toStub))
+			{
 				translated.put(toStub, "");
+				Log(" Found new stubbed phrase '" + toStub + "'");
+			}
 		}
 	}
 }
