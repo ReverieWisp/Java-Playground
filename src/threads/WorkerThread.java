@@ -1,5 +1,13 @@
 package threads;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /* This is a thread. You can instantiate the object and then call run() on it, and
  * it'll just do its thing.
  * 
@@ -12,17 +20,15 @@ public class WorkerThread extends Thread
 	public String name = ""; // A name for the thread. This gets printed.
 	
 	// Constructor
-	public WorkerThread(String threadName, int delayMS)
+	public WorkerThread()
 	{
-		this.name = threadName;
-		this.delayMS = delayMS;
+		
 	}
 	
 	// Method called when spawned as a thread
 	@Override
 	public void run() 
 	{
-		ThreadSleep(delayMS);
 		DoWork();
 	}
 	
@@ -31,27 +37,32 @@ public class WorkerThread extends Thread
 	 // These aren't required for threading or anything, just here for testing. //
 	/////////////////////////////////////////////////////////////////////////////
 	// A uniform DoWork function for benchmarking purposes.
+	private static Integer num = 0;
 	public void DoWork()
 	{
-		long msStart = System.currentTimeMillis();
-		long num = 0;
-		
-		for(int i = 0; i < Math.pow(10, 9); ++i)
-			num *= Math.sqrt(i);
-		
-		long msEnd = System.currentTimeMillis();
-		
-		System.out.println("I'm thread " + name + ", I waited for " + delayMS + "ms then I did " + (msEnd - msStart) + "ms of identical work!");
-	}
-	
-	// Handles the try catch requirement java has for sleeping
-	private void ThreadSleep(int ms)
-	{
-		try
+		try 
 		{
-			Thread.sleep(1000);
-		}
-		catch (InterruptedException e)
+			String name = null;
+			synchronized(num)
+			{
+				name = "wolfram_" + num;
+				++num;
+			}
+			
+			URL	url = new URL("http://api.wolframalpha.com/v1/simple?appid=URH589-HPXQ2XWP5R&i=how+many+centimeters+to+an+inch%3F");
+	
+			InputStream in = new BufferedInputStream(url.openStream());
+			OutputStream out = new BufferedOutputStream(new FileOutputStream(name + ".png"));
+			
+			for ( int i; (i = in.read()) != -1; ) {
+			    out.write(i);
+			}
+			
+			in.close();
+			out.close();
+			
+		} 
+		catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
