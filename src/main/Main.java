@@ -18,9 +18,9 @@ import core.CommandManager;
 import core.Response;
 import threads.WorkerThread;
 
+/*
 public class Main
 {
-	/*
 	// Variable arg definitions to make roles readable
 	public static String[] List() 
 	{ 
@@ -30,7 +30,7 @@ public class Main
 	{ 
 		return strings; 
 	}
-	*/
+
 	private static Integer num = 0;
 	public static void main(String[] args) throws IOException
 	{
@@ -42,7 +42,7 @@ public class Main
 		}
 	}
 }
-
+*/
 
 
 
