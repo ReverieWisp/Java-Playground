@@ -1,7 +1,6 @@
 package simpleLocalization;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +9,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
-
 import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Profile.Section;
 import org.ini4j.Wini;
@@ -120,7 +118,8 @@ public class Localizer
 		return input;
 	}
 	
-	// Update localization from the disk on file
+	// Update localization from the disk on file. Creates the file if it doesn't exist.
+	// This file is internally formatted as an ini file.
 	public static void UpdateLocFromDisk()
 	{
 		Log("Attempting to read localization file");
@@ -132,23 +131,27 @@ public class Localizer
 			Wini ini = new Wini(file);
 			for(String str : ini.keySet())
 			{
+				// Store everything in all .ini sections
 				Section sec = ini.get(str);
 				for(String s : sec.keySet())
 				{
-					Log("Read '" + s + "'");
-					if(s.trim() == section)
-						continue;
-					
 					if(!translated.containsKey(s))
 						translated.put(s, sec.get(s, String.class));
 				}
 			}
 		}
-		catch(InvalidFileFormatException e) { Error("File issue with format during read"); }
-		catch(IOException e) { Error("IO exception during read"); }
+		catch(InvalidFileFormatException e) 
+		{
+			Error("File issue with format during read");
+		}
+		catch(IOException e)
+		{
+			Error("IO exception during read");
+		}
 	}
 	
-	// Rewrites out at the specified filename with existing stubs
+	// Rewrites out at the specified filename with existing stubs.
+	// This preserves existing localized phrases.
 	public static void SaveLocToDisk()
 	{
 		Log("Attempting to write updated localization file");
@@ -164,12 +167,18 @@ public class Localizer
 			
 			ini.store();
 		}
-		
-		catch(InvalidFileFormatException e) { Error("File issue with format during write"); }
-		catch(IOException e) { Error("IO exception during write"); }
+		catch(InvalidFileFormatException e)
+		{
+			Error("File issue with format during write");
+		}
+		catch(IOException e)
+		{
+			Error("IO exception during write");
+		}
 	}
 
-	// Scrape the project and generate all the possible localizeable phrases
+	// Scrape the project and generate all the possible localizeable phrases.
+	// This stubs out phrases to be localized.
 	public static void ScrapeAll()
 	{
 		ArrayList<String> localizeList = new ArrayList<String>();
