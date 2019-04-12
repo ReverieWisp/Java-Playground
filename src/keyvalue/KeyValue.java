@@ -10,7 +10,7 @@ public class KeyValue
 		public final char SectionStart = '[';
 		public final char SectionEnd = ']';
 		public final char KeyValueLineSeparator = '\n';
-		public final String KeyValueSplit = " =";
+		public final String KeyValueSplit = "=";
 		private HashMap<String, HashMap<String, String>> sectionKeyValue;
 		
 		// String constructor that parses the input string into the object
@@ -21,8 +21,30 @@ public class KeyValue
 			Parse(input);
 		}
 		
+		// Adds a KeyValue pair to the specified section if it's not already there.
+		// Also creates the section if it's not already present.
+		public void AddKeyValue(String sectionName, String key, String value)
+		{
+			AddSection(sectionName);
+			sectionKeyValue.get(sectionName).putIfAbsent(key, value);
+		}
+		
+		public HashMap<String, String> GetSection(String sectionName)
+		{
+			return sectionKeyValue.get(sectionName);
+		}
+		
+		  ///////////////////////
+		 // Private functions //
+		///////////////////////
+		// Adds a given section to the hashmap if it's not already present
+		private void AddSection(String sectionName)
+		{
+			sectionKeyValue.putIfAbsent(sectionName, new HashMap<String, String>());
+		}
+		
 		// Parses out the string passed in into the sectionkeyValue HashMap. 
-		public void Parse(String input)
+		private void Parse(String input)
 		{
 			String[] sections = input.split("\\" + SectionStart);
 
@@ -39,7 +61,7 @@ public class KeyValue
 				
 				// Parse section name. If it already exists, don't bother making it.
 				String sectionName = section.substring(0, pos);
-				sectionKeyValue.putIfAbsent(sectionName, new HashMap<String, String>());
+				AddSection(sectionName);
 					
 				// Parse out the pairs within the section, split them all out. 
 				String unparsedPairs = section.substring(pos + 1);
@@ -56,7 +78,7 @@ public class KeyValue
 					
 					String key = line.substring(0, splitPos);
 					String value = line.substring(splitPos + KeyValueSplit.length());
-					sectionKeyValue.get(sectionName).put(key, value);
+					sectionKeyValue.get(sectionName).putIfAbsent(key, value);
 				}
 			}
 		}
@@ -70,23 +92,44 @@ public class KeyValue
 				System.out.println(toPrint[i]);
 		}
 		
-		// Prints out the hashmap type
-		@SuppressWarnings({"rawtypes", "unused"})
-		private void Dump(HashMap<String, HashMap<String, String>> toPrint)
+		// Stores the internal hashmap as a string then reutrns it. 
+		// Places 1 newline between the sections.
+		@SuppressWarnings({"rawtypes", "unused", "unchecked"})
+		public String ToString()
 		{
-			Iterator it = toPrint.entrySet().iterator();
+			String out = "";
+			
+			Iterator it = sectionKeyValue.entrySet().iterator();
 			while (it.hasNext())
 			{
 				Map.Entry pair = (Map.Entry)it.next();
-				System.out.println("|" + pair.getKey() + "|" + pair.getValue() + "|");
+				out += ("[" + pair.getKey() + "]\n");
+				
+				Iterator internal = ((HashMap<String, String>)pair.getValue()).entrySet().iterator();
+				
+				while(internal.hasNext())
+				{
+					Map.Entry internalPair = (Map.Entry)internal.next();
+					out += (internalPair.getKey() + "=" + internalPair.getValue()) + "\n";
+				}
+				
+				out += "\n";
 			}
+			
+			return out;
 		}
 	}
 	
 	
 	public static void main(String[] args)
 	{
-		String str = "[Example]\n Key 1 = Value 1 \nKey 2 =\nKey 3 = Value 3";
-		new KeyValueParser(str);
+		String str = "[Example]\n Key 1 = Value 1 \nKey 2 =\nKey 3= Value 3[Number 2]\n    K  \\n ey 3333 =   Yeet\n";
+		for(int i = 0; i < 10; ++i)
+		{
+			KeyValueParser parser = new KeyValueParser(str);
+			str = parser.ToString();
+			System.out.println(str);
+			System.out.println("---");
+		}
 	}
 }
