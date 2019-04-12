@@ -65,7 +65,7 @@ public class KeyValue
 					
 				// Parse out the pairs within the section, split them all out. 
 				String unparsedPairs = section.substring(pos + 1);
-				String[] pairs = unparsedPairs.split("" + KeyValueLineSeparator);
+				String[] pairs = unparsedPairs.split("\\" + KeyValueLineSeparator);
 				
 				// Parse out valid key-value pairs, and store them in the specified section.
 				// At this point, we can be guarenteed that sectionName is in the Hashmap.
