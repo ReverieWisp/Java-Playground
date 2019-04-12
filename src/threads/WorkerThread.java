@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /* This is a thread. You can instantiate the object and then call run() on it, and

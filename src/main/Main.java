@@ -1,4 +1,6 @@
 package main;
+
+/*
 import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,6 +19,7 @@ import core.Command;
 import core.CommandManager;
 import core.Response;
 import threads.WorkerThread;
+*/
 
 /*
 public class Main
