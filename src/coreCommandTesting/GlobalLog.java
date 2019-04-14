@@ -1,4 +1,4 @@
-package core;
+package coreCommandTesting;
 
 public class GlobalLog
 {

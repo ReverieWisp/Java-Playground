@@ -94,7 +94,7 @@ public class KeyValue
 		
 		// Stores the internal hashmap as a string then reutrns it. 
 		// Places 1 newline between the sections.
-		@SuppressWarnings({"rawtypes", "unused", "unchecked"})
+		@SuppressWarnings({"rawtypes", "unchecked"})
 		public String ToString()
 		{
 			String out = "";
@@ -120,7 +120,7 @@ public class KeyValue
 		}
 	}
 	
-	
+	/*
 	public static void main(String[] args)
 	{
 		String str = "[Example]\n Key 1 = Value 1 \nKey 2 =\nKey 3= Value 3[Number 2]\n    K  \\n ey 3333 =   Yeet\n";
@@ -132,4 +132,5 @@ public class KeyValue
 			System.out.println("---");
 		}
 	}
+	*/
 }

@@ -1,7 +1,4 @@
-package commands;
-
-import core.Command;
-import core.Response;
+package coreCommandTesting;
 
 public class CommandPing extends Command 
 {

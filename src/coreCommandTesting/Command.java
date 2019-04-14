@@ -1,7 +1,7 @@
-package core;
+package coreCommandTesting;
 
-import core.GlobalLog;
-import core.Response;
+import coreCommandTesting.GlobalLog;
+import coreCommandTesting.Response;
 
 public class Command
 {

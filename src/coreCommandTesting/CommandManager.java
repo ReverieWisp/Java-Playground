@@ -1,9 +1,9 @@
-package core;
+package coreCommandTesting;
 
 import java.util.HashMap;
 
-import core.GlobalLog;
-import core.Response;
+import coreCommandTesting.GlobalLog;
+import coreCommandTesting.Response;
 
 public class CommandManager 
 {

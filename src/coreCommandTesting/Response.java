@@ -1,6 +1,6 @@
-package core;
+package coreCommandTesting;
 
-import core.GlobalLog;
+import coreCommandTesting.GlobalLog;
 
 public class Response
 {

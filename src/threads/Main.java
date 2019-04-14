@@ -1,4 +1,4 @@
-package main;
+package threads;
 
 /*
 import java.awt.Image;
