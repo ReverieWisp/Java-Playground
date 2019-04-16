@@ -2,6 +2,7 @@ package determineCallingClass;
 
 import determineCallingClass.verylong.packagename.SomeOtherClass;
 
+/*
 public class SomeRemoteClass
 {
 	public static void main(String[] args)
@@ -10,3 +11,4 @@ public class SomeRemoteClass
 		SomeOtherClass.Remote();
 	}
 }
+*/
