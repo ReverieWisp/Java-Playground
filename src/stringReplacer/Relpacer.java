@@ -26,6 +26,7 @@ public class Relpacer
 		return str;
 	}
 	
+	/*
 	public static void main(String[] args)
 	{
 		String str = "o\\\\k\\testing\\n\\\"something\"\\t else\\ok";
@@ -36,4 +37,5 @@ public class Relpacer
 		System.out.println(ReEscape(UnEscape(str)));
 		System.out.println("-");
 	}
+	*/
 }
