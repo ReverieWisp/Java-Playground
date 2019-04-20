@@ -7,6 +7,7 @@ import org.luaj.vm2.lib.jse.*;
 
 public class LuaMain
 {
+	/*
 	public static void main(String[] args)
 	{
 		// Set up the globals table for calling lua
@@ -37,4 +38,5 @@ public class LuaMain
 		LuaValue addFunc = globals.get("addFunc");
 		System.out.println("In java we called lua addFunc, and got: " + addFunc.call(LuaValue.valueOf(3), LuaValue.valueOf(7)));
 	}
+	*/
 }
