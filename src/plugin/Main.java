@@ -2,6 +2,7 @@ package plugin;
 
 public class Main
 {
+	/*
 	public static void main(String[] args)
 	{
 		PluginManager pluginManager = new PluginManager("./plugins/");
@@ -12,4 +13,5 @@ public class Main
 	{
 		PluginLog.Log("Plugin called! Got output: " + str);
 	}
+	*/
 }
