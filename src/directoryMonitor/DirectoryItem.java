@@ -2,7 +2,7 @@ package directoryMonitor;
 
 import java.nio.file.Path;
 
-public class DirectoryItem implements Comparable
+public class DirectoryItem implements Comparable<Object>
 {
 	public final Path path;
 	public final Long lastModified;
