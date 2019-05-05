@@ -1,5 +1,7 @@
 package directoryMonitor;
 
+import java.nio.file.Path;
+
 public class Main
 {
 	private static void Log(String forward, String content) 
@@ -12,6 +14,11 @@ public class Main
 		Log(forward, di.path.getFileName().toString());
 	}
 	
+	public static void OnAdded(DirectoryItem a) { Log("Added", a); }
+	public static void OnUpdated(DirectoryItem u) { Log("Updated", u); }
+	public static void OnDeleted(DirectoryItem d) { Log("Deleted", d); }
+	
+	
 	public static void main(String[] args)
 	{
 		final int sleepTime = 2000;
@@ -19,12 +26,7 @@ public class Main
 		
 		while(true)
 		{
-			Log("Log", "Checking for changes...");
-			
-			fm.Update(
-					  (a)->{ Log("Added", a);   }
-					, (u)->{ Log("Updated", u); }
-					, (d)->{ Log("Deleted", d); });
+			fm.Update(Main::OnAdded, Main::OnUpdated, Main::OnDeleted);
 			
 			try
 			{
@@ -34,6 +36,8 @@ public class Main
 			{
 				e.printStackTrace();
 			}
+			
+			Log("Log", "Updating...");
 		}
 	}
 }
