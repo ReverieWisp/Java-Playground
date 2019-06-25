@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import userbench.FileUtils;
+
 // All things considered, this doesn't need to be particularly efficient since anything
 // less than 10ms of search time won't be noticable to an end user really, not for
 // a networked application that's not performance bound. 
